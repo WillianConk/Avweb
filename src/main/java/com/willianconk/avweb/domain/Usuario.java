@@ -1,11 +1,14 @@
-package com.willianconk.avweb;
+package com.willianconk.avweb.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Usuario implements Serializable {
@@ -17,6 +20,9 @@ public class Usuario implements Serializable {
 	private boolean chefe;
 	private String nome;
 	private String cpf;
+	
+	@ManyToMany(mappedBy = "usuarios")
+	private List<Cardapio> cardapios = new ArrayList<>();
 	
 	public Usuario() {
 	}
@@ -61,6 +67,14 @@ public class Usuario implements Serializable {
 		this.cpf = cpf;
 	}
 
+	public List<Cardapio> getCardapio() {
+		return cardapios;
+	}
+
+	public void setCardapio(List<Cardapio> pedido) {
+		this.cardapios = pedido;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -85,5 +99,5 @@ public class Usuario implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }
