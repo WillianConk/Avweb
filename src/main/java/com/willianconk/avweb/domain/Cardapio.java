@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Cardapio implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -25,6 +27,7 @@ public class Cardapio implements Serializable {
 	private String sobremesa;
 	private String bebeida;
 	
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name = "CARDAPIO_USUARIO",
 		joinColumns = @JoinColumn(name = "usuario_id"),
